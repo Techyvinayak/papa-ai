@@ -1,0 +1,8 @@
+[build]
+  functions = "netlify/functions"
+
+[[headers]]
+  for = "/api/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "https://papa-ai.netlify.app"
+    Access-Control-Allow-Methods = "POST"

@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Papa.AI — Desi Drama, Hinglish Power</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --yellow: #ffd600;
+      --teal: #00c9a7;
+      --pink: #ff4d6d;
+      --black: #0a0a0a;
+      --border: 4px solid var(--black);
+      --shadow: 6px 6px 0 var(--black);
+      --shadow-sm: 4px 4px 0 var(--black);
+      --font-display: "Bebas Neue", "Space Grotesk", sans-serif;
+      --font-body: "Poppins", "Space Grotesk", system-ui, sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--cream);
+      background-image:
+        linear-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+      background-size: 24px 24px;
+      background-position: -1px -1px;
+      color: var(--black);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .hazard-stripes {
+      height: 14px;
+      width: 100%;
+      flex-shrink: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--yellow) 0,
+        var(--yellow) 12px,
+        var(--black) 12px,
+        var(--black) 24px
+      );
+      border-bottom: 3px solid var(--black);
+    }
+
+    .hazard-stripes.bottom {
+      border-bottom: none;
+      border-top: 3px solid var(--black);
+      margin-top: auto;
+    }
+
+    .app-shell {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.25rem 1.25rem 2rem;
+    }
+
+    .page {
+      display: none;
+      animation: fadeIn 0.35s ease;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ——— Landing ——— */
+    .landing-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      background: var(--black);
+      color: var(--cream);
+      display: grid;
+      place-items: center;
+      font-weight: 700;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      font-family: var(--font-body);
+      font-size: 1.35rem;
+    }
+
+    .badge-tag {
+      background: #fff;
+      border: var(--border);
+      padding: 0.45rem 0.75rem;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .floating-badge {
+      position: absolute;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.5rem 0.65rem;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-6deg);
+      z-index: 2;
+    }
+
+    .floating-badge.pink {
+      background: var(--pink);
+      color: #fff;
+      left: -4px;
+      top: 72px;
+    }
+
+    .floating-badge.teal {
+      background: var(--teal);
+      color: var(--black);
+      right: 0;
+      top: 58px;
+      transform: rotate(5deg);
+    }
+
+    .floating-badge.viral {
+      background: var(--pink);
+      color: #fff;
+      font-size: 0.55rem;
+      padding: 0.35rem 0.45rem;
+      z-index: 4;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+      align-items: start;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr 380px;
+        gap: 2.5rem;
+      }
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--yellow);
+      border: var(--border);
+      padding: 0.35rem 0.65rem;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      box-shadow: var(--shadow-sm);
+      margin-bottom: 1rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 5rem);
+    line-height: 1.2;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+    margin: 0 0 1.25rem;
+    font-weight: 400;
+    /* gap: 90px !important; */
+    }
+
+    .hl-yellow {
+      background: var(--yellow);
+      padding: 0 0.15em;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hl-pink {
+      background: var(--pink);
+      color: #fff;
+      padding: 0 0.15em;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .hero-sub {
+      font-size: 1rem;
+      line-height: 1.65;
+      max-width: 34rem;
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 1rem 1.75rem;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      cursor: pointer;
+      background: var(--yellow);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: transform 0.08s ease, box-shadow 0.08s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 4px 4px 0 var(--black);
+    }
+
+    .btn-primary:active {
+      transform: translate(4px, 4px);
+      box-shadow: 2px 2px 0 var(--black);
+    }
+
+    .hero-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.25rem;
+    }
+
+    .mini-tag {
+      background: #fff;
+      border: 3px solid var(--black);
+      padding: 0.4rem 0.65rem;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0 var(--black);
+    }
+
+    /* Preview cards stack */
+    .preview-stack {
+      position: relative;
+      min-height: 340px;
+      margin-top: 1rem;
+    }
+
+    .preview-card {
+      position: absolute;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 1rem 1.1rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      max-width: 100%;
+      background: #fff;
+    }
+
+    .preview-card.user {
+      top: 0;
+      right: 0;
+      left: auto;
+      width: 92%;
+      z-index: 2;
+    }
+
+    .preview-card.papa-said {
+      top: 78px;
+      right: 12px;
+      width: 88%;
+      background: var(--yellow);
+      z-index: 3;
+    }
+
+    .preview-card.personality {
+      top: 168px;
+      left: 8px;
+      width: 72%;
+      background: var(--teal);
+      font-size: 0.72rem;
+      z-index: 1;
+    }
+
+    .preview-card.personality-2 {
+      top: 238px;
+      left: 48px;
+      width: 68%;
+      background: var(--teal);
+      font-size: 0.72rem;
+      z-index: 0;
+    }
+
+    .preview-label {
+      font-size: 0.58rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+      opacity: 0.85;
+    }
+
+    .viral-mini {
+      position: absolute;
+      top: 132px;
+      right: -8px;
+      transform: rotate(8deg);
+    }
+
+    .viral-mini2 {
+      position: absolute;
+      top: 240px;
+      right: 18px;
+      transform: rotate(-10deg);
+      z-index: 5;
+    }
+
+    /* Feature row */
+    .features {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    @media (min-width: 700px) {
+      .features {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .feature-card {
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 1.25rem 1rem;
+      min-height: 140px;
+    }
+
+    .feature-card.yellow {
+      background: var(--yellow);
+    }
+
+    .feature-card.pink {
+      background: var(--pink);
+      color: #fff;
+    }
+
+    .feature-card.teal {
+      background: var(--teal);
+    }
+
+    .feature-card h3 {
+      font-family: var(--font-display);
+      font-size: 1.65rem;
+      letter-spacing: 0.04em;
+      margin: 0.35rem 0 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .feature-card p {
+      margin: 0;
+      font-size: 0.88rem;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .feature-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    .footer-line {
+      text-align: center;
+      margin-top: 3rem;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.9;
+    }
+
+    /* ——— Quiz ——— */
+    .quiz-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .quiz-progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.5rem;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .progress-track {
+      height: 14px;
+      border: 3px solid var(--black);
+      background: #fff;
+      margin-bottom: 1.25rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: var(--yellow);
+      width: 0%;
+      transition: width 0.25s ease;
+    }
+
+    .quiz-card {
+      background: #fff;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1.35rem 1.35rem;
+    }
+
+    .q-badge {
+      display: inline-block;
+      background: var(--pink);
+      color: #fff;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      padding: 0.35rem 0.55rem;
+      border: 3px solid var(--black);
+      margin-bottom: 1rem;
+      text-transform: uppercase;
+    }
+
+    .quiz-q-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.15rem);
+      letter-spacing: 0.03em;
+      line-height: 1.05;
+      text-transform: uppercase;
+      margin: 0 0 1.35rem;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .option-btn {
+      min-height: 52px;
+      padding: 10px 14px;
+      border: 2px solid black;
+      border-radius: 50px;
+      background: white;
+      font-family: inherit;
+      font-size: 0.82rem;
+      cursor: pointer;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      word-break: break-word;
+      transition: all 0.15s ease;
+      line-height: 1.3;
+    }
+
+    .option-btn:hover {
+      background: #fff8cc;
+    }
+
+    .option-btn.selected {
+      background: #FFD600;
+      border-color: black;
+      font-weight: 700;
+    }
+
+    /* pill-letter kept for backwards compat but hidden in new layout */
+    .option-btn .pill-letter {
+      display: none;
+    }
+
+    .custom-answer-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2.5px solid black;
+      border-radius: 12px;
+      color: var(--black);
+      font-family: inherit;
+      font-size: 0.9rem;
+      margin-top: 4px;
+      box-sizing: border-box;
+      background: white;
+    }
+
+    .custom-answer-input::placeholder {
+      color: rgba(10, 10, 10, 0.45);
+      font-weight: 500;
+    }
+
+    .custom-answer-input:focus {
+      outline: none;
+      border-color: #FFD600;
+    }
+
+    .quiz-nav {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-top: 1.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .btn-back {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.2rem;
+      border: var(--border);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-next {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.85rem 1.2rem;
+      border: var(--border);
+      background: var(--yellow);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+    }
+
+    .btn-back:disabled,
+    .btn-next:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    /* Ready screen */
+    .ready-card {
+      max-width: 520px;
+      margin: 3rem auto;
+      background: #fff;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .ready-card h2 {
+      font-family: var(--font-display);
+      font-size: 3rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin: 0 0 1rem;
+    }
+
+    .ready-card p {
+      font-weight: 600;
+      margin-bottom: 1.75rem;
+      line-height: 1.6;
+    }
+
+    /* ——— Chat ——— */
+    .chat-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-icon-home {
+      width: 44px;
+      height: 44px;
+      border: var(--border);
+      background: #fff;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .chat-title-block {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .chat-title-block small {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.15rem;
+    }
+
+    .chat-title-block h1 {
+      font-family: var(--font-display);
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      margin: 0;
+      line-height: 1;
+    }
+
+    .btn-new-papa {
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.72rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 0.65rem 1rem;
+      border: var(--border);
+      background: var(--pink);
+      color: #fff;
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      white-space: nowrap;
+    }
+
+    .chat-window {
+      background: #fff;
+      border: var(--border);
+      box-shadow: var(--shadow);
+      min-height: 320px;
+      max-height: min(56vh, 520px);
+      overflow-y: auto;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .msg-row {
+      display: flex;
+      flex-direction: column;
+      max-width: 92%;
+    }
+
+    .msg-row.user {
+      align-self: flex-end;
+      align-items: flex-end;
+    }
+
+    .msg-row.papa {
+      align-self: flex-start;
+      align-items: flex-start;
+    }
+
+    .msg-label {
+      font-size: 0.55rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .msg-label.you {
+      color: var(--pink);
+    }
+
+    .bubble {
+      border: var(--border);
+      padding: 0.85rem 1rem;
+      box-shadow: 3px 3px 0 var(--black);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+
+    .bubble.user {
+      background: #fff;
+      font-weight: 600;
+    }
+
+    .bubble.papa {
+      background: var(--teal);
+      font-weight: 700;
+      white-space: pre-wrap;
+    }
+
+    .make-card-btn {
+      margin-top: 0.65rem;
+      font-family: var(--font-body);
+      font-weight: 800;
+      font-size: 0.62rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.45rem 0.65rem;
+      border: 3px solid var(--black);
+      background: #fff;
+      box-shadow: 2px 2px 0 var(--black);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .chat-input-row {
+      display: flex;
+      gap: 0.65rem;
+      align-items: stretch;
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 0.5rem;
+      background: #fff;
+    }
+
+    .chat-input-row input {
+      flex: 1;
+      border: 3px solid var(--black);
+      background: var(--cream);
+      padding: 0.85rem 1rem;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .chat-input-row input:focus {
+      outline: none;
+      background: #fff;
+    }
+
+    .btn-send {
+      width: 54px;
+      flex-shrink: 0;
+      border: var(--border);
+      background: var(--yellow);
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      box-shadow: 3px 3px 0 var(--black);
+      font-size: 1.15rem;
+    }
+
+    .btn-send:disabled {
+      opacity: 0.5;
+      cursor: wait;
+    }
+
+    /* Hidden share card template target */
+    #share-card-export {
+      position: fixed;
+      left: -9999px;
+      top: 0;
+      width: 420px;
+      padding: 28px;
+      background: var(--cream);
+      border: var(--border);
+      box-shadow: var(--shadow);
+      font-family: var(--font-body);
+    }
+
+    #share-card-export h4 {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      margin: 0 0 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    #share-card-export .papa-quote {
+      background: var(--teal);
+      border: var(--border);
+      padding: 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      margin-bottom: 16px;
+      white-space: pre-wrap;
+    }
+
+    #share-card-export .share-tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    #share-card-export .share-hash {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: var(--pink);
+    }
+
+    /* ——— Age / region screen ——— */
+    .age-wrap {
+      max-width: 680px;
+      margin: 2rem auto 0;
+    }
+
+    .age-heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      margin: 0 0 2rem;
+      line-height: 1.1;
+    }
+
+    .age-question {
+      margin-bottom: 1.5rem;
+    }
+
+    .age-question-label {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .age-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .age-pill {
+      padding: 10px 20px;
+      border: 2px solid black;
+      border-radius: 50px;
+      background: white;
+      font-family: inherit;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+    }
+
+    .age-pill:hover {
+      background: #fff8cc;
+    }
+
+    .age-pill.selected {
+      background: #FFD600;
+      border-color: black;
+      font-weight: 700;
+    }
+
+    /* ——— Language toggle ——— */
+    .lang-toggle {
+      display: flex;
+      gap: 0;
+      border: 2px solid black;
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 3px 3px 0 var(--black);
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      padding: 0.4rem 0.85rem;
+      border: none;
+      background: white;
+      font-family: inherit;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .lang-btn:first-child {
+      border-right: 2px solid black;
+    }
+
+    .lang-btn.active {
+      background: #FFD600;
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="hazard-stripes" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <!-- PAGE 1: Landing -->
+    <section id="page-landing" class="page active">
+      <header class="landing-header">
+        <div class="logo">
+          <span class="logo-mark">P</span>
+          <span>PAPA.AI</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.6rem;flex-wrap:wrap;">
+          <div class="badge-tag">Made for Indian Households</div>
+          <div class="lang-toggle" role="group" aria-label="Language">
+            <button type="button" class="lang-btn active" id="lang-hinglish" onclick="setLang('hinglish')">🇮🇳 Hinglish</button>
+            <button type="button" class="lang-btn" id="lang-english" onclick="setLang('english')">🌍 English</button>
+          </div>
+        </div>
+        <!-- <div class="floating-badge pink">100% Desi Drama</div> -->
+        <div class="floating-badge teal">Hinglish Powered</div>
+      </header>
+
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="hero-tag">✨ AI × Indian Papa Energy</div>
+          <h1 class="hero-title" id="hero-title-el">
+            APNE <span class="hl-yellow">PAPA</span> KO<br />
+            <span class="hl-pink">ZINDA</span> KARO.
+          </h1>
+          <p class="hero-sub" id="hero-sub-el">
+            Answer 5 funny questions, build your Papa's personality, get real-life Hinglish reactions to anything you say.
+          </p>
+          <button type="button" class="btn-primary" id="btn-start-quiz" onclick="startFlow()">
+            <span id="landing-cta-text">START THE QUIZ ⚡</span>
+          </button>
+          <div class="hero-tags-row">
+            <span class="mini-tag">NO LOGIN</span>
+            <span class="mini-tag">100% FREE</span>
+            <span class="mini-tag">PURE HINGLISH</span>
+          </div>
+        </div>
+
+        <div class="preview-stack" aria-hidden="true">
+          <span class="floating-badge viral viral-mini">Viral AF</span>
+          <span class="floating-badge viral viral-mini2">Viral AF</span>
+          <div class="preview-card user">
+            <div class="preview-label">You typed</div>
+            Papa, mujhe bike chahiye.
+          </div>
+          <div class="preview-card papa-said">
+            <div class="preview-label">Papa said</div>
+            Bike? Pehle marks dikha, Sharma ji ke bete ne already SUV le li hai!
+          </div>
+          <div class="preview-card personality">
+            <div class="preview-label">Personality</div>
+            Sharma Ji's Best Friend
+          </div>
+          <div class="preview-card personality-2">
+            <div class="preview-label">Personality</div>
+            OTP Hotline Wale Papa
+          </div>
+        </div>
+      </div>
+
+      <div class="features">
+        <div class="feature-card yellow">
+          <div class="feature-icon">★</div>
+          <h3>1. Build Papa</h3>
+          <p>MCQs to decode personality — tech, drama, paise, emotion, full thesis.</p>
+        </div>
+        <div class="feature-card pink">
+          <div class="feature-icon">💬</div>
+          <h3>2. Ask Anything</h3>
+          <p>Type your situation. Papa replies in Hinglish with maximum spice.</p>
+        </div>
+        <div class="feature-card teal">
+          <div class="feature-icon">↗</div>
+          <h3>3. Share & Roast</h3>
+          <p>Download a meme card and launch WhatsApp family group chaos.</p>
+        </div>
+      </div>
+
+      <p class="footer-line"><b>PAPA AI CAN MAKE MISTAKES BETTER ASK YOUR PAPA. <br>MADE WITH ❤️ BY <a href="https://x.com/vinayakahuja64">VINAYAK</a></b></p>
+    </section>
+
+    <!-- PAGE 1b: Age / Region -->
+    <section id="page-age" class="page">
+      <div class="age-wrap">
+        <h2 class="age-heading" id="age-heading">Pehle thoda batao apne baare mein 👇</h2>
+
+        <div class="age-question">
+          <div class="age-question-label" id="age-q1-label">Tumhari umar kitni hai?</div>
+          <div class="age-pills" id="age-age-pills">
+            <button type="button" class="age-pill" data-val="under15" onclick="selectAge(this)">Under 15</button>
+            <button type="button" class="age-pill" data-val="15-20" onclick="selectAge(this)">15–20</button>
+            <button type="button" class="age-pill" data-val="21-25" onclick="selectAge(this)">21–25</button>
+            <button type="button" class="age-pill" data-val="25+" onclick="selectAge(this)">25+</button>
+          </div>
+        </div>
+
+        <div class="age-question">
+          <div class="age-question-label" id="age-q2-label">Tum kahan se ho?</div>
+          <div class="age-pills" id="age-region-pills">
+            <button type="button" class="age-pill" data-val="North India" onclick="selectRegion(this)">North India</button>
+            <button type="button" class="age-pill" data-val="South India" onclick="selectRegion(this)">South India</button>
+            <button type="button" class="age-pill" data-val="West India" onclick="selectRegion(this)">West India</button>
+            <button type="button" class="age-pill" data-val="East India" onclick="selectRegion(this)">East India</button>
+            <button type="button" class="age-pill" data-val="Outside India" onclick="selectRegion(this)">Outside India</button>
+          </div>
+        </div>
+
+        <button type="button" class="btn-primary" id="btn-age-next" disabled onclick="goToQuiz()">
+          <span id="age-cta-text">Chalo Shuru Karte Hain →</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- PAGE 2: Quiz -->
+    <section id="page-quiz" class="page">
+      <div class="quiz-wrap">
+        <div class="quiz-progress-row">
+          <span id="quiz-progress-label">Question 1 / 5</span>
+          <span id="quiz-percent">20%</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="quiz-progress-fill"></div>
+        </div>
+
+        <div class="quiz-card">
+          <span class="q-badge" id="quiz-q-badge">Question 1</span>
+          <h2 class="quiz-q-text" id="quiz-question-text"></h2>
+          <div class="options-grid" id="quiz-options"></div>
+          <input
+            type="text"
+            class="custom-answer-input"
+            id="quiz-custom-answer"
+            placeholder="Write your own answer..."
+            maxlength="2000"
+            autocomplete="off"
+          />
+        </div>
+      </div>
+
+      <div class="quiz-nav">
+        <button type="button" class="btn-back" id="quiz-back" disabled>
+          ← BACK
+        </button>
+        <button type="button" class="btn-next" id="quiz-next">
+          NEXT →
+        </button>
+      </div>
+    </section>
+
+    <!-- Ready -->
+    <section id="page-ready" class="page">
+      <div class="ready-card">
+        <h2>Papa is ready 🧔</h2>
+        <p id="ready-papa-name"></p>
+        <button type="button" class="btn-primary" id="btn-enter-chat">Enter Chat ⚡</button>
+      </div>
+    </section>
+
+    <!-- PAGE 3: Chat -->
+    <section id="page-chat" class="page">
+      <div class="chat-topbar">
+        <button type="button" class="btn-icon-home" id="btn-chat-home" title="Home">⌂</button>
+        <div class="chat-title-block">
+          <small>YOUR PAPA</small>
+          <h1 id="chat-papa-title">THE LEGEND</h1>
+        </div>
+        <button type="button" class="btn-new-papa" id="btn-new-papa">
+          ↻ New Papa
+        </button>
+      </div>
+
+      <div class="chat-window" id="chat-messages"></div>
+
+      <form class="chat-input-row" id="chat-form" autocomplete="off">
+        <input type="text" id="chat-input" placeholder="Papa, mujhe..." maxlength="2000" />
+        <button type="submit" class="btn-send" id="btn-send" aria-label="Send">➤</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="hazard-stripes bottom" aria-hidden="true"></div>
+
+  <!-- Off-screen export -->
+  <div id="share-card-export">
+    <h4>Papa Said:</h4>
+    <div class="papa-quote" id="share-card-body"></div>
+    <div class="share-tag">Find your Papa → papa-ai.netlify.app</div>
+    <div class="share-hash">#WhatWillPapaSay #PapaAI</div>
+  </div>
+
+  <script>
+    
+// const MODELS = [
+//   "deepseek/deepseek-chat-v3-0324:free",
+//   "mistralai/mistral-small-3.2-24b-instruct:free",
+//   "openrouter/free"
+// ];
+let currentModel = 0;
+
+    const QUIZ_DATA = [
+      {
+        title: "Papa and technology…",
+        options: [
+          "Calls for every OTP and transaction",
+          "Sends Good Morning flowers daily",
+          "Secretly more tech-savvy than you",
+          "Types calmly with one finger",
+          "Trusts every random YouTube news completely",
+          "Can't find the app but knows every news",
+          "YouTube se sab seekh lete hai",
+          "Calls you from the next room instead of walking",
+        ],
+      },
+      {
+        title: "Papa during family functions…",
+        options: [
+          "Shows your achievements proudly",
+          "Never-ending kisse and stories",
+          "Compares you with cousins",
+          "Becomes the best political analyst",
+          "Sleeps in the corner",
+          "Handles all logistics and seating",
+          "Feeds everyone before himself",
+          "Takes 500 photos but never in them",
+        ],
+      },
+      {
+        title: "Papa's default answer to any request…",
+        options: [
+          "Zarurat kya hai iski?",
+          "Dekhte hain na",
+          "Mummy se pucho ek baar",
+          "Silent stare",
+          "Mere time mein aisa nahi hota tha",
+          "Pehle padhai, baaki sab baad mein",
+          "Achha kar liya, aur achha kar sakte ho",
+          "Haan, par dhyan se",
+        ],
+      },
+      {
+        title: "Papa's emotional style…",
+        options: [
+          "Never shows feelings",
+          "Angry outside, soft inside",
+          "Acts normal after big fights",
+          "Gives motivational lectures at midnight",
+          "Expresses love through food",
+          "Gets proud over tiny achievements secretly",
+          "Proud but says it to everyone except you",
+          "Jokes around but gets serious when it matters",
+        ],
+      },
+      {
+        title: "Papa's communication style…",
+        options: [
+          "One-word replies",
+          "Best Roaster",
+          "Long lectures",
+          "Sarcasm king",
+          "Silence + disappointment combo",
+          "Ends arguments with 'Bas keh diya'",
+          "Tells same stories every week",
+          "Actually listens and gives solid advice",
+        ],
+      },
+    ];
+
+    /** Per-option personality score deltas for computePapaName (multi-select sums). */
+    const QUIZ_OPTION_SCORES = [
+      [
+        { tech: 3 },
+        { drama: 2 },
+        { tech: 2 },
+        { silent: 1 },
+        { tech: 1, drama: 2 },
+        { tech: 2, silent: 1 },
+        { tech: 2, drama: 1 },
+        { tech: 1, silent: 2 },
+      ],
+      [
+        { motivator: 2 },
+        { drama: 3 },
+        { roast: 2 },
+        { drama: 3 },
+        { silent: 2 },
+        { motivator: 2, drama: 1 },
+        { food: 3 },
+        { drama: 1, silent: 1 },
+      ],
+      [
+        { money: 3 },
+        { silent: 1 },
+        { drama: 1 },
+        { silent: 3 },
+        { nostalgia: 3 },
+        { motivator: 2, silent: 1 },
+        { motivator: 2 },
+        { silent: 1, motivator: 1 },
+      ],
+      [
+        { silent: 2 },
+        { silent: 1, motivator: 1 },
+        { silent: 2 },
+        { motivator: 3 },
+        { food: 3 },
+        { motivator: 2, silent: 1 },
+        { roast: 1, silent: 2 },
+        { motivator: 1, drama: 1 },
+      ],
+      [
+        { silent: 2 },
+        { roast: 4 },
+        { motivator: 2 },
+        { roast: 2 },
+        { silent: 3 },
+        { silent: 2, roast: 1 },
+        { drama: 2 },
+        { motivator: 3 },
+      ],
+    ];
+
+    const LETTER = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    function emptyQuizAnswer() {
+      return { selected: [], custom: "" };
+    }
+
+    let quizAnswers = [];
+    let quizIndex = 0;
+    let papaDisplayName = "THE LEGEND";
+    let userAge = "";
+    let userRegion = "";
+    let userLanguage = "hinglish";
+
+    function $(id) {
+      return document.getElementById(id);
+    }
+
+    function showPage(id) {
+      document.querySelectorAll(".page").forEach((p) => p.classList.remove("active"));
+      $(id).classList.add("active");
+    }
+
+    // ——— Language toggle ———
+    const LANG = {
+      hinglish: {
+        heroTitle: 'APNE <span class="hl-yellow">PAPA</span> KO<br /><span class="hl-pink">ZINDA</span> KARO.',
+        heroSub: "Answer 5 funny questions, build your Papa's personality, get real-life Hinglish reactions to anything you say.",
+        landingCta: "START THE QUIZ ⚡",
+        ageHeading: "Pehle thoda batao apne baare mein 👇",
+        ageQ1: "Tumhari umar kitni hai?",
+        ageQ2: "Tum kahan se ho?",
+        ageCta: "Chalo Shuru Karte Hain →",
+        quizNext: "NEXT →",
+        quizFinish: "FINISH →",
+        chatPlaceholder: "Papa, mujhe...",
+        loading: "Papa soch rahe hain... 🤔",
+        makeCard: "↗ Make Card",
+        shareX: "𝕏 Share on X",
+        langLine: "ALWAYS speak in Hinglish — Hindi words in English letters. Short punchy sentences. Max 6-7 lines. No emojis. Never sound like an AI. React exactly like a real Indian Papa at the dinner table.",
+      },
+      english: {
+        heroTitle: 'BRING YOUR <span class="hl-yellow">PAPA</span> TO LIFE.',
+        heroSub: "Answer 5 funny questions, build your Papa's personality, get real reactions to anything you say.",
+        landingCta: "START THE QUIZ ⚡",
+        ageHeading: "Tell us a little about yourself 👇",
+        ageQ1: "How old are you?",
+        ageQ2: "Where are you from?",
+        ageCta: "Let's Get Started →",
+        quizNext: "NEXT →",
+        quizFinish: "FINISH →",
+        chatPlaceholder: "Papa, I want to...",
+        loading: "Papa is thinking... 🤔",
+        makeCard: "↗ Make Card",
+        shareX: "𝕏 Share on X",
+        langLine: "Speak in English only — no Hindi words. Still sound like a strict, loving, dramatic Indian Papa.",
+      },
+    };
+
+    function setLang(lang) {
+      userLanguage = lang;
+      $("lang-hinglish").classList.toggle("active", lang === "hinglish");
+      $("lang-english").classList.toggle("active", lang === "english");
+      const t = LANG[lang];
+      $("hero-title-el").innerHTML = t.heroTitle;
+      $("hero-sub-el").textContent = t.heroSub;
+      $("landing-cta-text").textContent = t.landingCta;
+      $("age-heading").textContent = t.ageHeading;
+      $("age-q1-label").textContent = t.ageQ1;
+      $("age-q2-label").textContent = t.ageQ2;
+      $("age-cta-text").textContent = t.ageCta;
+      $("chat-input").placeholder = t.chatPlaceholder;
+      const nb = $("quiz-next");
+      if (nb) nb.textContent = quizIndex === QUIZ_DATA.length - 1 ? t.quizFinish : t.quizNext;
+    }
+
+    // ——— Age screen ———
+    function selectAge(el) {
+      document.querySelectorAll("#age-age-pills .age-pill").forEach(b => b.classList.remove("selected"));
+      el.classList.add("selected");
+      userAge = el.dataset.val;
+      checkAgeReady();
+    }
+
+    function selectRegion(el) {
+      document.querySelectorAll("#age-region-pills .age-pill").forEach(b => b.classList.remove("selected"));
+      el.classList.add("selected");
+      userRegion = el.dataset.val;
+      checkAgeReady();
+    }
+
+    function checkAgeReady() {
+      $("btn-age-next").disabled = !(userAge && userRegion);
+    }
+
+    function goToQuiz() {
+      quizAnswers = QUIZ_DATA.map(() => emptyQuizAnswer());
+      quizIndex = 0;
+      showPage("page-quiz");
+      renderQuiz();
+    }
+
+    function startFlow() {
+      userAge = "";
+      userRegion = "";
+      document.querySelectorAll(".age-pill").forEach(b => b.classList.remove("selected"));
+      $("btn-age-next").disabled = true;
+      showPage("page-age");
+    }
+
+    function ageContextLine() {
+      if (userAge === "under15" || userAge === "15-20") {
+        return "This child is a student. Reference board exams, marks, tuition.";
+      } else if (userAge === "21-25") {
+        return "This child is in college or job hunting. Reference placements, career, independence.";
+      } else if (userAge === "25+") {
+        return "This child is working. Reference shaadi pressure, settle ho ja, ghar kab lega.";
+      }
+      return "";
+    }
+
+    function lettersForCount(n) {
+      return LETTER.slice(0, n).split("");
+    }
+
+    function getQuizAnswer(idx) {
+      if (!quizAnswers[idx]) quizAnswers[idx] = emptyQuizAnswer();
+      return quizAnswers[idx];
+    }
+
+    function renderQuiz() {
+      const q = QUIZ_DATA[quizIndex];
+      const total = QUIZ_DATA.length;
+      const pct = Math.round(((quizIndex + 1) / total) * 100);
+
+      $("quiz-progress-label").textContent = `QUESTION ${quizIndex + 1} / ${total}`;
+      $("quiz-percent").textContent = pct + "%";
+      $("quiz-progress-fill").style.width = pct + "%";
+
+      $("quiz-q-badge").textContent = `QUESTION ${quizIndex + 1}`;
+      $("quiz-question-text").textContent = q.title.toUpperCase();
+
+      const ans = getQuizAnswer(quizIndex);
+      const letters = lettersForCount(q.options.length);
+
+      const opts = $("quiz-options");
+      opts.innerHTML = "";
+      q.options.forEach((text, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "option-btn" + (ans.selected.includes(i) ? " selected" : "");
+        btn.dataset.index = String(i);
+        btn.innerHTML =
+          '<span class="pill-letter">' +
+          letters[i] +
+          "</span><span>" +
+          escapeHtml(text) +
+          "</span>";
+        btn.addEventListener("click", () => toggleOption(i));
+        opts.appendChild(btn);
+      });
+
+      const customEl = $("quiz-custom-answer");
+      customEl.value = ans.custom || "";
+      customEl.oninput = () => {
+        getQuizAnswer(quizIndex).custom = customEl.value;
+        updateNextLabel();
+      };
+
+      $("quiz-back").disabled = quizIndex === 0;
+      updateNextLabel();
+    }
+
+    function escapeHtml(s) {
+      const d = document.createElement("div");
+      d.textContent = s;
+      return d.innerHTML;
+    }
+
+    function toggleOption(i) {
+      const ans = getQuizAnswer(quizIndex);
+      const pos = ans.selected.indexOf(i);
+      if (pos === -1) {
+        ans.selected.push(i);
+      } else {
+        ans.selected.splice(pos, 1);
+      }
+      ans.selected.sort((a, b) => a - b);
+      document.querySelectorAll(".option-btn").forEach((el) => {
+        const idx = Number(el.dataset.index);
+        el.classList.toggle("selected", ans.selected.includes(idx));
+      });
+      updateNextLabel();
+    }
+
+    function updateNextLabel() {
+      const btn = $("quiz-next");
+      const ans = getQuizAnswer(quizIndex);
+      const custom = (ans.custom || "").trim();
+      const ok = ans.selected.length > 0 || custom.length > 0;
+      btn.disabled = !ok;
+      const t = LANG[userLanguage];
+      btn.textContent = quizIndex === QUIZ_DATA.length - 1 ? t.quizFinish : t.quizNext;
+    }
+
+    function buildTraitsSummary() {
+      return QUIZ_DATA.map((q, idx) => {
+        const ans = quizAnswers[idx] || emptyQuizAnswer();
+        const sorted = (ans.selected || []).slice().sort((a, b) => a - b);
+        const picked = sorted.map((i) => q.options[i]);
+        const custom = (ans.custom || "").trim();
+        const combined = picked.concat(custom ? [custom] : []);
+        const body = combined.join(", ");
+        return `Q${idx + 1}: ${q.title} — ${body}`;
+      }).join("\n");
+    }
+
+    function computePapaName() {
+      const scores = {
+        money: 0,
+        tech: 0,
+        drama: 0,
+        roast: 0,
+        silent: 0,
+        food: 0,
+        nostalgia: 0,
+        motivator: 0,
+      };
+
+      for (let q = 0; q < QUIZ_DATA.length; q++) {
+        const ans = quizAnswers[q] || emptyQuizAnswer();
+        const table = QUIZ_OPTION_SCORES[q] || [];
+        for (const optIdx of ans.selected || []) {
+          const delta = table[optIdx];
+          if (!delta) continue;
+          for (const key of Object.keys(delta)) {
+            scores[key] += delta[key];
+          }
+        }
+      }
+
+      const titles = [
+        ["money", "THE MONEY GURU"],
+        ["tech", "THE OTP COMMANDER"],
+        ["drama", "THE FAMILY SHOWMAN"],
+        ["roast", "THE ROASTER-IN-CHIEF"],
+        ["silent", "THE SILENT JUDGE"],
+        ["food", "THE FOODIE PHILOSOPHER"],
+        ["nostalgia", "THE MERE TIME WALA"],
+        ["motivator", "THE MIDNIGHT MOTIVATOR"],
+      ];
+
+      const totalScore = Object.values(scores).reduce((a, b) => a + b, 0);
+      if (totalScore === 0) {
+        return "THE DESI LEGEND";
+      }
+
+      let bestKey = "drama";
+      let best = -1;
+      for (const [k, v] of Object.entries(scores)) {
+        if (v > best) {
+          best = v;
+          bestKey = k;
+        }
+      }
+
+      const match = titles.find(([k]) => k === bestKey);
+      return match ? match[1] : "THE DESI LEGEND";
+    }
+
+
+
+
+
+    async function callGemini(userSituation) {
+  const res = await fetch("/.netlify/functions/chat", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      situation: userSituation.trim(),
+      traits: buildTraitsSummary(),
+      language: userLanguage,
+      age: userAge
+    })
+  });
+
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || "Server error");
+  if (!data.reply) throw new Error("Empty response from Papa");
+  return data.reply;
+}
+
+
+
+
+
+
+    function appendUserMessage(text) {
+      const wrap = document.createElement("div");
+      wrap.className = "msg-row user";
+      wrap.innerHTML =
+        '<span class="msg-label you">You</span>' +
+        '<div class="bubble user"></div>';
+      wrap.querySelector(".bubble").textContent = text;
+      $("chat-messages").appendChild(wrap);
+      scrollChat();
+    }
+
+    function appendPapaMessage(text, loading) {
+      const wrap = document.createElement("div");
+      wrap.className = "msg-row papa";
+      const label = "PAPA — " + papaDisplayName;
+      wrap.innerHTML =
+        '<span class="msg-label">' +
+        escapeHtml(label) +
+        '</span>' +
+        '<div class="bubble papa"></div>';
+
+      const bubble = wrap.querySelector(".bubble");
+      bubble.textContent = loading ? LANG[userLanguage].loading : text;
+
+      if (!loading) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "make-card-btn";
+        btn.textContent = LANG[userLanguage].makeCard;
+        btn.addEventListener("click", () => downloadShareCard(text, wrap));
+        wrap.appendChild(btn);
+      }
+
+      $("chat-messages").appendChild(wrap);
+      scrollChat();
+      return wrap;
+    }
+
+    function scrollChat() {
+      const el = $("chat-messages");
+      el.scrollTop = el.scrollHeight;
+    }
+
+    async function downloadShareCard(papaText, containerEl) {
+      if (typeof html2canvas !== "function") {
+        alert("html2canvas did not load — check your internet and refresh.");
+        return;
+      }
+
+      document.querySelectorAll("[data-papa-card-modal]").forEach((el) => el.remove());
+
+      function showPapaCardToast(message) {
+        const toast = document.createElement("div");
+        toast.textContent = message;
+        toast.style.cssText =
+          "position:fixed;bottom:24px;left:50%;transform:translateX(-50%);" +
+          "background:#0a0a0a;color:white;padding:12px 22px;border-radius:50px;" +
+          "font-size:0.82rem;font-weight:700;z-index:99999;white-space:nowrap;" +
+          "opacity:1;transition:opacity 0.35s ease;font-family:inherit;";
+        document.body.appendChild(toast);
+        setTimeout(() => {
+          toast.style.opacity = "0";
+        }, 3000);
+        setTimeout(() => toast.remove(), 3350);
+      }
+
+      function closeModal() {
+        modal.remove();
+      }
+
+      const modal = document.createElement("div");
+      modal.dataset.papaCardModal = "1";
+      modal.style.cssText =
+        "position:fixed;inset:0;background:rgba(0,0,0,0.85);z-index:9000;" +
+        "display:flex;align-items:center;justify-content:center;";
+      modal.addEventListener("click", (e) => {
+        if (e.target === modal) closeModal();
+      });
+
+      const inner = document.createElement("div");
+      inner.style.cssText =
+        "position:relative;width:90%;max-width:420px;background:#111;" +
+        "border-radius:20px;overflow:hidden;opacity:0;transform:translateY(16px);" +
+        "transition:opacity 0.2s ease,transform 0.2s ease;font-family:inherit;";
+
+      const closeBtn = document.createElement("button");
+      closeBtn.type = "button";
+      closeBtn.setAttribute("aria-label", "Close");
+      closeBtn.textContent = "×";
+      closeBtn.style.cssText =
+        "position:absolute;top:12px;right:12px;width:32px;height:32px;" +
+        "border-radius:50%;background:white;color:black;font-weight:900;" +
+        "border:2px solid black;cursor:pointer;z-index:10;font-size:1.15rem;" +
+        "line-height:1;display:flex;align-items:center;justify-content:center;" +
+        "font-family:inherit;padding:0;";
+      closeBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeModal();
+      });
+
+      const sectionA = document.createElement("div");
+      sectionA.id = "papa-reply-card";
+      sectionA.style.cssText = "padding:28px 28px 20px;background:#111;";
+
+      const papaLabel = document.createElement("span");
+      papaLabel.textContent = "PAPA SAID:";
+      papaLabel.style.cssText =
+        "color:#FFD600;font-size:0.68rem;letter-spacing:3px;font-weight:800;" +
+        "display:block;margin-bottom:12px;";
+
+      const replyText = document.createElement("div");
+      replyText.textContent = papaText;
+      replyText.style.cssText =
+        "color:white;font-weight:700;font-size:0.95rem;line-height:1.7;white-space:pre-wrap;";
+
+      const bottomStrip = document.createElement("div");
+      bottomStrip.style.cssText =
+        "margin-top:18px;background:#00C9A7;border-radius:10px;padding:10px 16px;" +
+        "display:flex;justify-content:space-between;align-items:center;";
+      const stripLeft = document.createElement("span");
+      stripLeft.textContent = "🧔 Papa.AI";
+      stripLeft.style.cssText = "font-weight:800;color:#0a0a0a;font-size:0.82rem;";
+      const stripRight = document.createElement("span");
+      stripRight.textContent = "papa-ai.netlify.app";
+      stripRight.style.cssText = "font-size:0.68rem;color:#0a0a0a;";
+      bottomStrip.appendChild(stripLeft);
+      bottomStrip.appendChild(stripRight);
+
+      sectionA.appendChild(papaLabel);
+      sectionA.appendChild(replyText);
+      sectionA.appendChild(bottomStrip);
+
+      const sectionB = document.createElement("div");
+      sectionB.style.cssText =
+        "background:#1a1a1a;padding:16px 20px;display:grid;" +
+        "grid-template-columns:1fr 1fr;gap:10px;";
+
+      const dlBtn = document.createElement("button");
+      dlBtn.type = "button";
+      dlBtn.textContent = "⬇ Download Card";
+      dlBtn.style.cssText =
+        "background:white;color:black;border:none;border-radius:50px;padding:12px;" +
+        "font-weight:800;font-size:0.78rem;cursor:pointer;font-family:inherit;";
+      dlBtn.addEventListener("click", async (e) => {
+        e.stopPropagation();
+        try {
+          const card = document.getElementById("papa-reply-card");
+          const canvas = await html2canvas(card, {
+            scale: 2,
+            backgroundColor: "#111",
+          });
+          const a = document.createElement("a");
+          a.href = canvas.toDataURL("image/png");
+          a.download = "papa-card.png";
+          a.click();
+        } catch (err) {
+          alert("Download failed: " + err.message);
+        }
+      });
+
+      const copyBtn = document.createElement("button");
+      copyBtn.type = "button";
+      copyBtn.textContent = "📋 Copy & Share";
+      copyBtn.style.cssText =
+        "background:#FFD600;color:black;border:none;border-radius:50px;padding:12px;" +
+        "font-weight:800;font-size:0.78rem;cursor:pointer;font-family:inherit;";
+      copyBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const card = document.getElementById("papa-reply-card");
+        html2canvas(card, { scale: 2, backgroundColor: "#111" })
+          .then((canvas) => {
+            canvas.toBlob((blob) => {
+              if (!blob) {
+                alert("Could not create image.");
+                return;
+              }
+              navigator.clipboard
+                .write([new ClipboardItem({ "image/png": blob })])
+                .then(() => {
+                  showPapaCardToast(
+                    "📋 Card copied! Paste anywhere with Ctrl+V / Cmd+V 🔥"
+                  );
+                })
+                .catch((err) => {
+                  alert("Copy failed: " + err.message);
+                });
+            }, "image/png");
+          })
+          .catch((err) => {
+            alert("Copy failed: " + err.message);
+          });
+      });
+
+      sectionB.appendChild(dlBtn);
+      sectionB.appendChild(copyBtn);
+
+      inner.appendChild(closeBtn);
+      inner.appendChild(sectionA);
+      inner.appendChild(sectionB);
+      modal.appendChild(inner);
+      document.body.appendChild(modal);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          inner.style.opacity = "1";
+          inner.style.transform = "translateY(0)";
+        });
+      });
+    }
+
+    function resetQuizFlow() {
+      quizAnswers = QUIZ_DATA.map(() => emptyQuizAnswer());
+      quizIndex = 0;
+      $("chat-messages").innerHTML = "";
+      showPage("page-landing");
+    }
+
+    $("quiz-back").addEventListener("click", () => {
+      if (quizIndex <= 0) return;
+      quizIndex--;
+      renderQuiz();
+    });
+
+    $("quiz-next").addEventListener("click", () => {
+      const cur = getQuizAnswer(quizIndex);
+      const customOk = (cur.custom || "").trim().length > 0;
+      if (cur.selected.length === 0 && !customOk) return;
+
+      if (quizIndex < QUIZ_DATA.length - 1) {
+        quizIndex++;
+        renderQuiz();
+      } else {
+        papaDisplayName = computePapaName();
+        $("ready-papa-name").textContent =
+          "YOUR PAPA — " + papaDisplayName;
+        $("chat-papa-title").textContent = papaDisplayName;
+        showPage("page-ready");
+      }
+    });
+
+    $("btn-enter-chat").addEventListener("click", () => {
+      $("chat-messages").innerHTML = "";
+      showPage("page-chat");
+      $("chat-input").focus();
+    });
+
+    $("btn-new-papa").addEventListener("click", resetQuizFlow);
+
+    $("btn-chat-home").addEventListener("click", () => {
+      if (confirm("Ghar wapas? Quiz dubara se start hogi.")) resetQuizFlow();
+    });
+
+    $("chat-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const input = $("chat-input");
+      const raw = input.value.trim();
+      if (!raw) return;
+
+      appendUserMessage(raw);
+      input.value = "";
+
+      const thinking = appendPapaMessage("", true);
+      const bubble = thinking.querySelector(".bubble");
+
+      $("btn-send").disabled = true;
+
+      try {
+        const reply = await callGemini(raw);
+        bubble.textContent = reply;
+
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "make-card-btn";
+        btn.textContent = LANG[userLanguage].makeCard;
+        btn.addEventListener("click", () => downloadShareCard(reply, thinking));
+        thinking.appendChild(btn);
+      } catch (err) {
+        bubble.textContent =
+          "Arre beta, network ne drama kar diya: " + err.message + "\n\nThodi der baad try kar.";
+      } finally {
+        $("btn-send").disabled = false;
+        scrollChat();
+      }
+    });
+  </script>
+</body>
+</html>
