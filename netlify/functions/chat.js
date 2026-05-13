@@ -7,7 +7,7 @@ exports.handler = async (event) => {
   // Block requests not from your site
   const origin = event.headers.origin || "";
   const referer = event.headers.referer || "";
-  const allowed = "papa-ai.netlify.app";
+  const allowed = "papaai.netlify.app";
   if (!origin.includes(allowed) && !referer.includes(allowed)) {
     return { statusCode: 403, body: "Forbidden" };
   }
